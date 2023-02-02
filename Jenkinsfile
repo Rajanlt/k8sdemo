@@ -22,11 +22,10 @@ pipeline {
                 }
             }
         }
-        stage('Sonarqube') {
-    
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                sh "/opt/sonar-scanner/bin"
+        stage('SonarQube Analysis') {
+          def mvn = tool 'Default Maven';
+          withSonarQubeEnv() {
+            sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=test"
         }
       }
   }
