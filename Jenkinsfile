@@ -28,7 +28,7 @@ pipeline {
         }
       }
   }
-       stage('Publish') {
+       stage('Nexus artifact uploader') {
            steps {
            nexusArtifactUploader artifacts: [[artifactId: 'demo-0.0.1-SNAPSHOT', classifier: 'snapshot', file: '', type: 'var/lib/jenkins/workspace/Test_pipeline/target/demo-0.0.1-SNAPSHOT.jar']], credentialsId: 'Nexus_ID', groupId: 'Nexus_ID', nexusUrl: '13.234.38.191:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'http://13.233.166.229:8081/repository/snapshot-artifact/', version: 'nexusid'       
         }
